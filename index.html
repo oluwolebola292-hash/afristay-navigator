@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AfriStay - Hotel Locator for Africa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-hotel text-blue-600 text-2xl"></i>
+          <h1 class="text-2xl font-bold text-gray-900">AfriStay</h1>
+        </div>
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="#" class="text-gray-600 hover:text-blue-600 transition">Destinations</a>
+          <a href="#" class="text-gray-600 hover:text-blue-600 transition">About</a>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            Sign In
+          </button>
+        </div>
+        <button class="md:hidden text-gray-600" id="mobileMenuBtn">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden md:hidden bg-white border-b">
+    <div class="px-4 py-2 space-y-2">
+      <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">Destinations</a>
+      <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">About</a>
+      <button class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+        Sign In
+      </button>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16 px-4">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Find Your Perfect Stay in Africa</h2>
+      <p class="text-xl mb-8 text-blue-100">Discover amazing hotels across the continent</p>
+      
+      <!-- Search Bar -->
+      <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div class="md:col-span-2">
+            <label class="block text-left text-sm text-gray-600 mb-1">Location</label>
+            <div class="relative">
+              <i class="fas fa-map-marker-alt absolute left-3 top-3 text-gray-400"></i>
+              <input 
+                type="text" 
+                id="searchLocation"
+                placeholder="Search by city or country" 
+                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              >
+            </div>
+          </div>
+          <div>
+            <label class="block text-left text-sm text-gray-600 mb-1">Country</label>
+            <select id="countryFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="">All Countries</option>
+              <option value="Kenya">Kenya</option>
+              <option value="South Africa">South Africa</option>
+              <option value="Egypt">Egypt</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Tanzania">Tanzania</option>
+              <option value="Nigeria">Nigeria</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Rwanda">Rwanda</option>
+              <option value="Ethiopia">Ethiopia</option>
+              <option value="Senegal">Senegal</option>
+            </select>
+          </div>
+          <button id="searchBtn" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold mt-auto">
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+      <div class="flex flex-wrap gap-4 items-center">
+        <div class="flex-1 min-w-[200px]">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
+          <select id="priceFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <option value="">All Prices</option>
+            <option value="budget">Budget (Under $50)</option>
+            <option value="mid">Mid-range ($50-$150)</option>
+            <option value="luxury">Luxury ($150+)</option>
+          </select>
+        </div>
+        <div class="flex-1 min-w-[200px]">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Rating</label>
+          <select id="ratingFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <option value="">All Ratings</option>
+            <option value="5">5 Stars</option>
+            <option value="4">4+ Stars</option>
+            <option value="3">3+ Stars</option>
+          </select>
+        </div>
+        <div class="flex-1 min-w-[200px]">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Amenities</label>
+          <select id="amenitiesFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <option value="">All Amenities</option>
+            <option value="wifi">Free WiFi</option>
+            <option value="pool">Swimming Pool</option>
+            <option value="parking">Free Parking</option>
+            <option value="restaurant">Restaurant</option>
+          </select>
+        </div>
+        <button id="clearFilters" class="px-6 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition mt-auto">
+          Clear Filters
+        </button>
+      </div>
+    </div>
+
+    <!-- Results Count -->
+    <div class="mb-4">
+      <p class="text-gray-600"><span id="resultsCount" class="font-semibold">0</span> hotels found</p>
+    </div>
+
+    <!-- Hotels Grid -->
+    <div id="hotelsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Hotels will be dynamically inserted here -->
+    </div>
+
+    <!-- No Results Message -->
+    <div id="noResults" class="hidden text-center py-12">
+      <i class="fas fa-search text-gray-300 text-6xl mb-4"></i>
+      <h3 class="text-xl font-semibold text-gray-700 mb-2">No hotels found</h3>
+      <p class="text-gray-500">Try adjusting your filters or search criteria</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <i class="fas fa-hotel text-blue-500 text-2xl"></i>
+            <h3 class="text-xl font-bold">AfriStay</h3>
+          </div>
+          <p class="text-gray-400">Your trusted partner for finding perfect accommodations across Africa.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white transition">About Us</a></li>
+            <li><a href="#" class="hover:text-white transition">Contact</a></li>
+            <li><a href="#" class="hover:text-white transition">Careers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Destinations</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white transition">Kenya</a></li>
+            <li><a href="#" class="hover:text-white transition">South Africa</a></li>
+            <li><a href="#" class="hover:text-white transition">Morocco</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Follow Us</h4>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook text-2xl"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-2xl"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-2xl"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2024 AfriStay. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
